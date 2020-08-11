@@ -1,11 +1,12 @@
 import Router from 'express';
+import ControllerUser from './controller/ControllerUser';
 
 const router = Router();
 
-router.post('/helloworld', (request, response) => {
-	return response.status(200).send(
-		{'helloworld' : 'Hello Word.'}
-	);
-});
+const controllerUser = new ControllerUser();
+router.get('/users', controllerUser.index);
+router.post('/users', controllerUser.create);
+router.put('/users/:userId', controllerUser.update);
+router.delete('/users/:userId', controllerUser.del);
 
 export default router;
